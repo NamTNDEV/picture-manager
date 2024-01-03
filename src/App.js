@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import NotFound from "./components/NotFound";
+import Header from "./components/Header";
 
 const Photo = lazy(() => import("./features/photo"));
 
@@ -15,7 +16,7 @@ function App() {
     <div className="">
       <Suspense fallback={<div>Loading ...</div>}>
         <Router>
-          {/* <Header /> */}
+          <Header />
 
           <Routes>
             <Route path="/" element={<Navigate to="/photo" />} />

@@ -45,4 +45,4 @@ JWT is used for user authentication and data security.
 
 ## Contact
 
-For any questions or contributions, feel free to contact us at contact@photohub.com.
+For any questions or contributions, feel free to contact us at namtndev312002@gmail.com.
