@@ -1,9 +1,12 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormFeedback, FormGroup, Label } from "reactstrap";
 import Select from "react-select";
+import { ErrorMessage } from "formik";
 
 function SelectField({ field, form, label, placeholder, options }) {
   const { name, value } = field;
+  const { errors, touched } = form;
+  const showError = errors[name] && touched[name];
   const selectedOption = options.find((option) => option.value === value);
   const handleSelectedOptionChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : "";
@@ -16,6 +19,7 @@ function SelectField({ field, form, label, placeholder, options }) {
     };
     field.onChange(changeEvent);
   };
+
   return (
     <FormGroup>
       {label && <Label for={name}>{label}</Label>}
@@ -27,7 +31,9 @@ function SelectField({ field, form, label, placeholder, options }) {
         onChange={handleSelectedOptionChange}
         placeholder={placeholder}
         options={options}
+        className={showError ? "is-invalid" : ""}
       />
+      <ErrorMessage name={name} component={FormFeedback} />
     </FormGroup>
   );
 }

@@ -1,8 +1,12 @@
+import { ErrorMessage } from "formik";
 import React from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 function InputField({ form, field, label, placeholder }) {
   const { name, values, onChange, onBlur } = field;
+  const { errors, touched } = form;
+  const showError = errors[name] && touched[name];
+
   return (
     <FormGroup>
       {label && <Label for={name}>{label}</Label>}
@@ -13,7 +17,9 @@ function InputField({ form, field, label, placeholder }) {
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
+        invalid={showError}
       />
+      <ErrorMessage name={name} component={FormFeedback} />
     </FormGroup>
   );
 }

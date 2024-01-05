@@ -1,20 +1,39 @@
 import { FastField, Form, Formik } from "formik";
 import React from "react";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup } from "reactstrap";
+import * as Yup from "yup";
 
-import Images from "constants/images";
 import { PHOTO_CATEGORY_OPTIONS } from "constants/global";
 import InputField from "custom-fields/InputField";
 import SelectField from "custom-fields/SelectField";
+import RandomPhotoField from "custom-fields/RandomPhotoField";
 
-function PhotoForm({ onSubmit }) {
+function PhotoForm() {
   const initialValues = {
     title: "",
-    category: "",
+    category: null,
+    photo: "",
   };
 
+  const validationSchema = Yup.object().shape({
+    title: Yup.string().required("This field is required."),
+
+    category: Yup.number().required("This field is required."),
+
+    // photo: Yup.string().when("categoryId", {
+    //   is: 1,
+    //   then: Yup.string().required("This field is required."),
+    //   otherwise: Yup.string().notRequired(),
+    // }),
+    photo: Yup.string().required("This field is required."),
+  });
+
   return (
-    <Formik initialValues={initialValues}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values) => console.log(values)}
+    >
       {(formikProps) => {
         return (
           <Form>
@@ -37,26 +56,16 @@ function PhotoForm({ onSubmit }) {
               options={PHOTO_CATEGORY_OPTIONS}
             />
 
-            <FormGroup>
-              <Label for="categoryId">Photo</Label>
-
-              <div>
-                <Button type="button" outline color="primary">
-                  Random a photo
-                </Button>
-              </div>
-              <div>
-                <img
-                  width="200px"
-                  height="200px"
-                  src={Images.COLORFUL_BG}
-                  alt="colorful background"
-                />
-              </div>
-            </FormGroup>
+            <FastField
+              // Props của FastField
+              name="photo"
+              component={RandomPhotoField}
+              // Props truyền vào InputField
+              label="Photo"
+            />
 
             <FormGroup>
-              <Button type="button" color="primary" onClick={onSubmit}>
+              <Button type="submit" color="primary">
                 Add to album
               </Button>
             </FormGroup>
