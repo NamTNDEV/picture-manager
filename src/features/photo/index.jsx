@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import NotFound from "../../components/NotFound";
 import Main from "./pages/Main";
 import Add from "./pages/Add";
+import NotFound from "components/NotFound";
 
 function Photo() {
   return (
