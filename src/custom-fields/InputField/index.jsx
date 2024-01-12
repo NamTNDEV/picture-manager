@@ -3,17 +3,16 @@ import React from "react";
 import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 function InputField({ form, field, label, placeholder }) {
-  const { name, values, onChange, onBlur } = field;
+  const { name, value, onChange, onBlur } = field;
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
-
   return (
     <FormGroup>
       {label && <Label for={name}>{label}</Label>}
       <Input
         id={name}
         name={name}
-        value={values}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}

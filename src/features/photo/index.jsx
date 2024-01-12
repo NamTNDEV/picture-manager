@@ -8,6 +8,7 @@ function Photo() {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/add" element={<Add />} />
+      <Route path={`/:photoId`} element={<Add />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
