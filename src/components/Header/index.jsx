@@ -20,9 +20,9 @@ function Header() {
               className={({ isActive }) =>
                 isActive ? "header__link--active" : "header__link"
               }
-              to="/photo/add"
+              to="/sign-in"
             >
-              Add new Photo
+              Sign In
             </NavLink>
           </Col>
         </Row>
